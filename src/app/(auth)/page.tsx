@@ -53,8 +53,9 @@ export default function Login() {
           router.replace(`/verify-mfa?email=${values.email}`);
           return;
         }
-        router.replace(`/home`);
-        router.replace(`/home`);
+
+        router.push(`/home`);
+        toast.success("Success", { description: response?.data?.message });
       },
       onError: (error) => {
         console.log(error);
