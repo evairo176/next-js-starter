@@ -27,5 +27,6 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/home", req.nextUrl));
   }
 
+  // return
   return NextResponse.next();
 }
