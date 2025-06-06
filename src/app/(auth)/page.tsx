@@ -43,13 +43,17 @@ export default function Login() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     mutate(values, {
-      onSuccess: (response) => {
+      onSuccess: async (response) => {
+        // Optional: delay kecil agar browser sempat commit cookie
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
         if (response.data.mfaRequired) {
           router.replace(`/verify-mfa?email=${values.email}`);
           return;
         }
+        router.replace(`/home`);
         router.replace(`/home`);
       },
       onError: (error) => {
