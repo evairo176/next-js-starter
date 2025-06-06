@@ -12,11 +12,11 @@ const RevokeMfa = () => {
   const { refetch } = useAuthContext();
   const { mutate, isPending } = useMutation({
     mutationFn: revokeMFAMutationFn,
-    onSuccess: (response: any) => {
+    onSuccess: (response) => {
       refetch();
       toast.success("Success", { description: response?.data?.message });
     },
-    onError: (error: any) => {
+    onError: (error) => {
       console.log(error);
       toast.error("Error", { description: error?.message });
     },
@@ -24,7 +24,7 @@ const RevokeMfa = () => {
 
   const handleClick = useCallback(() => {
     mutate();
-  }, []);
+  }, [mutate]);
 
   return (
     <Button

@@ -36,7 +36,7 @@ const LogoutDialog = (props: {
 
   const handleLogout = useCallback(() => {
     mutate();
-  }, []);
+  }, [mutate]);
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>

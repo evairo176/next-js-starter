@@ -3,7 +3,6 @@ import React, { useCallback } from "react";
 import SessionItem from "./SessionItem";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { sessionDelMutationFn, sessionsQueryFn } from "@/lib/api";
-import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -25,18 +24,21 @@ const Sessions = () => {
     (session) => session.isCurrent !== true
   );
 
-  const handleDelete = useCallback((id: string) => {
-    mutate(id, {
-      onSuccess: (response) => {
-        refetch();
-        toast.success("Success", { description: response?.data?.message });
-      },
-      onError: (error) => {
-        console.log(error);
-        toast.error("Error", { description: error?.message });
-      },
-    });
-  }, []);
+  const handleDelete = useCallback(
+    (id: string) => {
+      mutate(id, {
+        onSuccess: (response) => {
+          refetch();
+          toast.success("Success", { description: response?.data?.message });
+        },
+        onError: (error) => {
+          console.log(error);
+          toast.error("Error", { description: error?.message });
+        },
+      });
+    },
+    [mutate, refetch]
+  );
 
   return (
     <div className="via-root to-root rounded-xl bg-gradient-to-r p-0.5">
@@ -85,7 +87,7 @@ const Sessions = () => {
                 "
                 >
                   {otherSessions?.map((session) => (
-                    <li>
+                    <li key={session.id}>
                       <SessionItem
                         loading={isPending}
                         userAgent={session.userAgent}

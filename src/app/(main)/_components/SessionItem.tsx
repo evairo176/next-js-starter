@@ -2,7 +2,6 @@ import React from "react";
 import { Loader, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { parseUserAgent } from "@/lib/parse-useragent";
-import { dateFormat } from "@/utils/date-format";
 
 const SessionItem = (props: {
   loading?: boolean;
