@@ -47,14 +47,14 @@ export default function Login() {
     mutate(values, {
       onSuccess: async (response) => {
         // Optional: delay kecil agar browser sempat commit cookie
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         if (response.data.mfaRequired) {
           router.replace(`/verify-mfa?email=${values.email}`);
           return;
         }
 
-        router.push(`/home`);
+        router.replace(`/home`);
         toast.success("Success", { description: response?.data?.message });
       },
       onError: (error) => {
