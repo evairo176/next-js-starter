@@ -62,8 +62,8 @@ export default function ResetPassword() {
       { ...values, verificationCode: code as string },
       {
         onSuccess: (response) => {
-          router.replace("/");
           toast.success("Success", { description: response?.data?.message });
+          router.replace("/");
         },
         onError: (error) => {
           console.log(error);

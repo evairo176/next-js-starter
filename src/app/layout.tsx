@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/theme-provider";
 import QueryProvider from "@/context/query-provider";
 import { Toaster } from "@/components/ui/sonner";
-import AnimateProvider from "@/context/animate-present-provider";
 
 const dm_sans = DM_Sans({ subsets: ["latin"] });
 
@@ -21,19 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-background ${dm_sans.className} antialiased`}>
-        <AnimateProvider>
-          <QueryProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-              <Toaster richColors />
-            </ThemeProvider>
-          </QueryProvider>
-        </AnimateProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster richColors />
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

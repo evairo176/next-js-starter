@@ -1,9 +1,12 @@
-import React from "react";
+import { Suspense } from "react";
+import VerifyMfa from "./_verifymfa";
 
-type Props = {};
-
-const page = (props: Props) => {
-  return <div>verify mfa</div>;
+const Page = () => {
+  return (
+    <Suspense>
+      <VerifyMfa />;
+    </Suspense>
+  );
 };
 
-export default page;
+export default Page;

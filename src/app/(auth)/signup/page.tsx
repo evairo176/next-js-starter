@@ -58,8 +58,9 @@ export default function SignUp() {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     mutate(values, {
-      onSuccess: () => {
+      onSuccess: (response) => {
         setIsSubmitted(true);
+        toast.success("Success", { description: response?.data?.message });
       },
       onError: (error) => {
         console.log(error);
