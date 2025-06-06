@@ -19,6 +19,9 @@ export default async function middleware(req: NextRequest) {
   // ✅ Correct way to access cookies in middleware
   const accessToken = req.cookies.get("accessToken")?.value;
 
+  console.log("Cookies:", req.cookies);
+  console.log("accessToken:", req.cookies.get("accessToken")?.value);
+
   if (isProtectedRoute && !accessToken) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
@@ -29,7 +32,3 @@ export default async function middleware(req: NextRequest) {
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
-};
