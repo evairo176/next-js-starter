@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://nodejs-backend-starter.vercel.app/api/:path*",
+        destination: "https://nodejs-backend-starter.vercel.app/api/v1/:path*",
       },
     ];
   },
